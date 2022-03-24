@@ -115,6 +115,8 @@ function ComparisonApp() {
   // Blue
   const rightColor = Color('rgb(19, 152, 246)');
 
+  const selectionColor = Color('rgb(189, 195, 199)');
+
   const leftTimeline = {
     color: leftColor.rgb().toString(),
     data: leftSide.timeline,
@@ -196,7 +198,11 @@ function ComparisonApp() {
                 data-testid="timeline-left"
                 timelineA={leftTimeline}
                 markings={{
-                  left: { from: leftFrom, to: leftUntil, color: leftColor },
+                  left: {
+                    from: leftFrom,
+                    to: leftUntil,
+                    color: selectionColor,
+                  },
                 }}
                 onSelect={(from, until) => {
                   dispatch(actions.setLeft({ from, until }));
@@ -247,7 +253,11 @@ function ComparisonApp() {
                 data-testid="timeline-right"
                 timelineA={rightTimeline}
                 markings={{
-                  right: { from: rightFrom, to: rightUntil, color: rightColor },
+                  right: {
+                    from: rightFrom,
+                    to: rightUntil,
+                    color: selectionColor,
+                  },
                 }}
                 onSelect={(from, until) => {
                   dispatch(actions.setRight({ from, until }));
