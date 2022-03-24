@@ -2111,13 +2111,13 @@
       // draw background, if any
       if (grid.show && grid.backgroundColor) drawBackground();
 
-      if (grid.show && !grid.aboveData) {
-        drawGrid();
-      }
-
       for (var i = 0; i < series.length; ++i) {
         executeHooks(hooks.drawSeries, [ctx, series[i]]);
         drawSeries(series[i]);
+      }
+
+      if (grid.show && !grid.aboveData) {
+        drawGrid();
       }
 
       executeHooks(hooks.draw, [ctx]);
@@ -2253,7 +2253,6 @@
             if (xequal) {
               ctx.moveTo(xrange.to + subPixel, yrange.from);
               ctx.lineTo(xrange.to + subPixel, yrange.to);
-              console.log('!');
             } else {
               ctx.moveTo(xrange.from, yrange.to + subPixel);
               ctx.lineTo(xrange.to, yrange.to + subPixel);
