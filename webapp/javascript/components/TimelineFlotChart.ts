@@ -2193,6 +2193,7 @@
 
       // draw markings
       var markings = options.grid.markings;
+      const ranges = [];
       if (markings) {
         if ($.isFunction(markings)) {
           axes = plot.getAxes();
@@ -2247,9 +2248,13 @@
           if (xequal || yequal) {
             var lineWidth = m.lineWidth || options.grid.markingsLineWidth,
               subPixel = lineWidth % 2 ? 0.5 : 0;
+
+            ranges.push({ xrange, yrange, subPixel, lineWidth });
+
             ctx.beginPath();
             ctx.strokeStyle = m.color || options.grid.markingsColor;
             ctx.lineWidth = lineWidth;
+            ctx.setLineDash([2]);
             if (xequal) {
               ctx.moveTo(xrange.to + subPixel, yrange.from);
               ctx.lineTo(xrange.to + subPixel, yrange.to);
@@ -2268,6 +2273,8 @@
             );
           }
         }
+
+        drawHorizontalSelectionLines({ ranges, ctx, options });
       }
 
       // draw the ticks
@@ -3575,3 +3582,42 @@
     return base * Math.floor(n / base);
   }
 })(jQuery);
+
+const drawHorizontalSelectionLines = ({ ranges, ctx, options }) => {
+  const rightBoundaryLine = ranges?.[0];
+  const leftBoundaryLine = ranges?.[1];
+
+  if (!rightBoundaryLine || !leftBoundaryLine) {
+    return;
+  }
+  // top line
+  const topLineWidth = 4;
+  ctx.beginPath();
+  ctx.strokeStyle = options.grid.markingsColor;
+  ctx.lineWidth = topLineWidth;
+  ctx.setLineDash([]);
+  ctx.moveTo(
+    rightBoundaryLine?.xrange.from + rightBoundaryLine?.subPixel || 0,
+    rightBoundaryLine?.yrange.to + topLineWidth / 2
+  );
+  ctx.lineTo(
+    leftBoundaryLine?.xrange.from + leftBoundaryLine?.subPixel || 0,
+    leftBoundaryLine?.yrange.to + topLineWidth / 2
+  );
+  ctx.stroke();
+
+  // bottom line
+  ctx.beginPath();
+  ctx.strokeStyle = options.grid.markingsColor;
+  ctx.lineWidth = rightBoundaryLine?.lineWidth || 1;
+  ctx.setLineDash([2]);
+  ctx.moveTo(
+    rightBoundaryLine?.xrange.from + rightBoundaryLine?.subPixel || 0,
+    rightBoundaryLine?.yrange.from
+  );
+  ctx.lineTo(
+    leftBoundaryLine?.xrange.from + leftBoundaryLine?.subPixel || 0,
+    leftBoundaryLine?.yrange.from
+  );
+  ctx.stroke();
+};

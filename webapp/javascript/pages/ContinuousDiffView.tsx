@@ -103,6 +103,8 @@ function ComparisonDiffApp() {
   // Blue
   const rightColor = Color('rgb(19, 152, 246)');
 
+  const selectionColor = Color('rgb(189, 195, 199)');
+
   return (
     <div className="pyroscope-app">
       <div className="main-wrapper">
@@ -139,7 +141,11 @@ function ComparisonDiffApp() {
                     dispatch(actions.setLeft({ from, until }));
                   }}
                   markings={{
-                    left: { from: leftFrom, to: leftUntil, color: leftColor },
+                    left: {
+                      from: leftFrom,
+                      to: leftUntil,
+                      color: selectionColor,
+                    },
                   }}
                 />
               </div>
@@ -158,7 +164,7 @@ function ComparisonDiffApp() {
                     right: {
                       from: rightFrom,
                       to: rightUntil,
-                      color: rightColor,
+                      color: selectionColor,
                     },
                   }}
                 />
