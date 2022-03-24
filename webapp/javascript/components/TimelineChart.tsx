@@ -6,7 +6,7 @@ import React from 'react';
 import ReactFlot from 'react-flot';
 import './TimelineFlotChart';
 import 'react-flot/flot/jquery.flot.time.min';
-import 'react-flot/flot/jquery.flot.selection.min';
+import './TimelineFlotChartSelection';
 import 'react-flot/flot/jquery.flot.crosshair.min';
 import './TimelineChartPlugin';
 
