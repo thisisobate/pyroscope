@@ -3584,8 +3584,8 @@
 })(jQuery);
 
 const drawHorizontalSelectionLines = ({ ranges, ctx, options }) => {
-  const rightBoundaryLine = ranges?.[0];
-  const leftBoundaryLine = ranges?.[1];
+  const leftBoundaryLine = ranges?.[0];
+  const rightBoundaryLine = ranges?.[1];
 
   if (!rightBoundaryLine || !leftBoundaryLine) {
     return;
