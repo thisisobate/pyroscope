@@ -17,7 +17,6 @@ import Color from 'color';
 import TimelineChartWrapper from '../components/TimelineChartWrapper';
 import Toolbar from '../components/Toolbar';
 import Footer from '../components/Footer';
-import InstructionText from '../components/InstructionText';
 import ExportData from '../components/ExportData';
 import useExportToFlamegraphDotCom from '../components/exportToFlamegraphDotCom.hook';
 import TagsBar from '../components/TagsBar';
@@ -191,7 +190,6 @@ function ComparisonApp() {
                 )
               }
             >
-              <InstructionText viewType="double" viewSide="left" />
               <TimelineChartWrapper
                 key="timeline-chart-left"
                 id="timeline-chart-left"
@@ -243,7 +241,6 @@ function ComparisonApp() {
                 )
               }
             >
-              <InstructionText viewType="double" viewSide="right" />
               <TimelineChartWrapper
                 key="timeline-chart-right"
                 id="timeline-chart-right"
