@@ -2279,6 +2279,7 @@
         }
         if (options?.selection?.selectionType === 'single') {
           drawHorizontalSelectionLines({ ranges, ctx, options });
+          drawSideHandle({ ranges, ctx, options });
         }
       }
 
@@ -3626,3 +3627,80 @@ const drawHorizontalSelectionLines = ({ ranges, ctx, options }) => {
   );
   ctx.stroke();
 };
+
+const drawSideHandle = ({ ctx, ranges, options }) => {
+  for (let i = 0; i < ranges?.length; i++) {
+    const range = ranges[i];
+    const handleWidth = 4;
+    const handleHeight = 22;
+
+    drawRoundedRect(
+      ctx,
+      range?.xrange?.from - handleWidth / 2 + range.subPixel,
+      range?.yrange?.from / 2 - handleHeight / 2 + 3,
+      handleWidth,
+      handleHeight,
+      2,
+      options.grid.markingsColor
+    );
+  }
+};
+
+function drawRoundedRect(ctx, left, top, width, height, radius, fillColor) {
+  var K = (4 * (Math.SQRT2 - 1)) / 3;
+  var right = left + width;
+  var bottom = top + height;
+  ctx.beginPath();
+  ctx.setLineDash([]);
+  // top left
+  ctx.moveTo(left + radius, top);
+  // top right
+  ctx.lineTo(right - radius, top);
+  //right top
+  ctx.bezierCurveTo(
+    right + radius * (K - 1),
+    top,
+    right,
+    top + radius * (1 - K),
+    right,
+    top + radius
+  );
+  //right bottom
+  ctx.lineTo(right, bottom - radius);
+  //bottom right
+  ctx.bezierCurveTo(
+    right,
+    bottom + radius * (K - 1),
+    right + radius * (K - 1),
+    bottom,
+    right - radius,
+    bottom
+  );
+  //bottom left
+  ctx.lineTo(left + radius, bottom);
+  //left bottom
+  ctx.bezierCurveTo(
+    left + radius * (1 - K),
+    bottom,
+    left,
+    bottom + radius * (K - 1),
+    left,
+    bottom - radius
+  );
+  //left top
+  ctx.lineTo(left, top + radius);
+  //top left again
+  ctx.bezierCurveTo(
+    left,
+    top + radius * (1 - K),
+    left + radius * (1 - K),
+    top,
+    left + radius,
+    top
+  );
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = fillColor;
+  ctx.fillStyle = fillColor;
+  ctx.fill();
+  ctx.stroke();
+}
