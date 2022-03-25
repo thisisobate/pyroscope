@@ -2254,7 +2254,11 @@
             ctx.beginPath();
             ctx.strokeStyle = m.color || options.grid.markingsColor;
             ctx.lineWidth = lineWidth;
-            ctx.setLineDash([2]);
+
+            if (options?.selection?.selectionType === 'single') {
+              ctx.setLineDash([2]);
+            }
+
             if (xequal) {
               ctx.moveTo(xrange.to + subPixel, yrange.from);
               ctx.lineTo(xrange.to + subPixel, yrange.to);
@@ -2273,8 +2277,9 @@
             );
           }
         }
-
-        drawHorizontalSelectionLines({ ranges, ctx, options });
+        if (options?.selection?.selectionType === 'single') {
+          drawHorizontalSelectionLines({ ranges, ctx, options });
+        }
       }
 
       // draw the ticks

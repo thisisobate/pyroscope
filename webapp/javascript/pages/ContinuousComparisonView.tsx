@@ -151,6 +151,7 @@ function ComparisonApp() {
             left: { from: leftFrom, to: leftUntil, color: leftColor },
             right: { from: rightFrom, to: rightUntil, color: rightColor },
           }}
+          selectionType="double"
         />
         <div
           className="comparison-container"
@@ -207,6 +208,7 @@ function ComparisonApp() {
                 onSelect={(from, until) => {
                   dispatch(actions.setLeft({ from, until }));
                 }}
+                selectionType="single"
               />
             </FlamegraphRenderer>
           </Box>
@@ -262,6 +264,7 @@ function ComparisonApp() {
                 onSelect={(from, until) => {
                   dispatch(actions.setRight({ from, until }));
                 }}
+                selectionType="single"
               />
             </FlamegraphRenderer>
           </Box>

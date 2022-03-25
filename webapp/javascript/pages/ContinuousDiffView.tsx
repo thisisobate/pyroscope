@@ -120,6 +120,7 @@ function ComparisonDiffApp() {
             left: { from: leftFrom, to: leftUntil, color: leftColor },
             right: { from: rightFrom, to: rightUntil, color: rightColor },
           }}
+          selectionType="double"
         />
         <Box>
           <FlamegraphRenderer
@@ -147,6 +148,7 @@ function ComparisonDiffApp() {
                       color: selectionColor,
                     },
                   }}
+                  selectionType="single"
                 />
               </div>
               <div className="diff-instructions-wrapper-side">
@@ -167,6 +169,7 @@ function ComparisonDiffApp() {
                       color: selectionColor,
                     },
                   }}
+                  selectionType="single"
                 />
               </div>
             </div>

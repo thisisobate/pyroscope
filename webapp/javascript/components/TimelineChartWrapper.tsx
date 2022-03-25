@@ -37,6 +37,8 @@ type TimelineChartWrapperProps = {
     left?: Marking;
     right?: Marking;
   };
+
+  selectionType: 'single' | 'double';
 };
 
 class TimelineChartWrapper extends React.Component<
@@ -61,6 +63,7 @@ class TimelineChartWrapper extends React.Component<
       },
       selection: {
         mode: 'x',
+        selectionType: props.selectionType || 'single',
       },
       crosshair: {
         mode: 'x',
