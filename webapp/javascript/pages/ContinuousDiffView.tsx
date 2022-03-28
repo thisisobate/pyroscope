@@ -1,19 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '@pyroscope/redux/hooks';
-import Box from '@ui/Box';
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@webapp/redux/hooks';
+import Box from '@webapp/ui/Box';
 import {
   fetchDiffView,
   selectContinuousState,
   actions,
-} from '@pyroscope/redux/reducers/continuous';
+} from '@webapp/redux/reducers/continuous';
 import { FlamegraphRenderer } from '@pyroscope/flamegraph';
 import Color from 'color';
-import Toolbar from '../components/Toolbar';
-import Footer from '../components/Footer';
-import TimelineChartWrapper from '../components/TimelineChartWrapper';
-import InstructionText from '../components/InstructionText';
-import useExportToFlamegraphDotCom from '../components/exportToFlamegraphDotCom.hook';
-import ExportData from '../components/ExportData';
+import Toolbar from '@webapp/components/Toolbar';
+import Footer from '@webapp/components/Footer';
+import TimelineChartWrapper from '@webapp/components/TimelineChartWrapper';
+import InstructionText from '@webapp/components/InstructionText';
+import useExportToFlamegraphDotCom from '@webapp/components/exportToFlamegraphDotCom.hook';
+import ExportData from '@webapp/components/ExportData';
 
 function ComparisonDiffApp() {
   const dispatch = useAppDispatch();
@@ -123,12 +123,7 @@ function ComparisonDiffApp() {
           selectionType="double"
         />
         <Box>
-          <FlamegraphRenderer
-            display="both"
-            viewType="diff"
-            profile={profile}
-            ExportData={exportData}
-          >
+          <FlamegraphRenderer profile={profile} ExportData={exportData}>
             <div className="diff-instructions-wrapper">
               <div className="diff-instructions-wrapper-side">
                 <InstructionText viewType="diff" viewSide="left" />
