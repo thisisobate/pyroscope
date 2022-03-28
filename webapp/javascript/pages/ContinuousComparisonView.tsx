@@ -20,16 +20,6 @@ import Footer from '@webapp/components/Footer';
 import ExportData from '@webapp/components/ExportData';
 import useExportToFlamegraphDotCom from '@webapp/components/exportToFlamegraphDotCom.hook';
 import TagsBar from '@webapp/components/TagsBar';
-// <<<<<<< HEAD
-// import TimelineChartWrapper from '../components/TimelineChartWrapper';
-// import Toolbar from '../components/Toolbar';
-// import Footer from '../components/Footer';
-// import ExportData from '../components/ExportData';
-// import useExportToFlamegraphDotCom from '../components/exportToFlamegraphDotCom.hook';
-// import TagsBar from '../components/TagsBar';
-// =======
-
-// >>>>>>> main
 import styles from './ContinuousComparison.module.css';
 
 function ComparisonApp() {
