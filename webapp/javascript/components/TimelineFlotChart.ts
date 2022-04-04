@@ -1,5 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
+// This file was injected here from https://github.com/rodrigowirth/react-flot/blob/master/flot/jquery.flot.js [#master] to customize Flot's rendering logic.
 
 (function ($) {
   $.color = {};
